@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all
+    @articles = Article.sorted
   end
 
   def new
@@ -28,11 +28,18 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(article_params)
-      flash[:notice] = "Successfully Updated Article #{@article.title}."
+      flash[:notice] = "Successfully Updated Article: #{@article.title}."
       redirect_to(article_path(@article))
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    flash[:notice] = "Successfully Deleted Article: #{@article.title}."
+    redirect_to(articles_path)
   end
 
   private
