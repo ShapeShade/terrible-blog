@@ -1,6 +1,8 @@
 <% @page_title = 'New Article' %>
 <h1>Create a new Article</h1>
 
+<%= link_to('Back to listing', articles_path) %>
+
 <% if @article.errors.any? %>
   <h2>You have errors to fix!</h2>
   <ul>
