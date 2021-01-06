@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @form_text = 'Create Article'
   end
 
   def create
@@ -23,6 +24,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    @form_text = 'Save Article'
   end
 
   def update
