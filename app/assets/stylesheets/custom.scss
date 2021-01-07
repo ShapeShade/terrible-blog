@@ -1,0 +1,14 @@
+@import "bootstrap";
+// TODO: Find a more interesting navbar color.
+.navbar {
+  background-color: #ffde99 !important;
+}
+
+.navbar-brand {
+  font-size: 3rem;
+}
+
+// TODO: Find better color for this or remove it...
+h1 {
+  color: red;
+}

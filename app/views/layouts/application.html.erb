@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <% @page_title = 'TerribleBlog' if @page_title.nil? %>
     <title><%= @page_title %></title>
@@ -11,7 +11,9 @@
   </head>
 
   <body>
+    <%= render 'layouts/navbar' %>
     <%= render 'layouts/msg' %>
     <%= yield %>
   </body>
 </html>
+
