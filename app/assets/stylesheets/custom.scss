@@ -1,14 +1,49 @@
 @import "bootstrap";
-// TODO: Find a more interesting navbar color.
 .navbar {
-  background-color: #ffde99 !important;
+  background-color: black !important;
 }
 
 .navbar-brand {
   font-size: 3rem;
 }
 
-// TODO: Find better color for this or remove it...
-h1 {
-  color: red;
+.nav-link {
+  color: aliceblue !important;
+}
+
+#logo {
+  color: aliceblue !important;
+  float: left;
+  font-size: 1.7em;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#home-container {
+  margin-top: 25px;
+}
+
+#home-jumbotron {
+  background-image: asset_url('blog-home-img.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+  background: linear-gradient(to right, dimgray, lightgray);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  flex-shrink: none;
 }
