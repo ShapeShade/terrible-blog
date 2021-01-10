@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
+# Article Model
 class Article < ApplicationRecord
+  belongs_to :user
+
   validates :title, presence: true, length: { within: 4..128 }
 
   scope :sorted, -> { order(id: :asc) }
