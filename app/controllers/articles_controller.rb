@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = 'Successfully Created new article'
       redirect_to(article_path(@article))
     else
+      @form_text = 'Create Article'
       render 'new'
     end
   end
@@ -33,6 +34,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Successfully Updated Article: #{@article.title}."
       redirect_to(article_path(@article))
     else
+      @form_text = 'Save Article'
       render 'edit'
     end
   end
