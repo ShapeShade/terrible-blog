@@ -14,5 +14,8 @@ class User < ApplicationRecord
                     length: { within: 3..128 },
                     uniqueness: { case_sensitive: false },
                     format: { with: VALID_EMAIL_REGEX }
+
+  scope :sorted, -> { order(id: :asc) }
+
   has_secure_password
 end
