@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @form_text = 'Create Article'
   end
 
   def create
@@ -19,14 +18,12 @@ class ArticlesController < ApplicationController
       flash[:notice] = 'Successfully Created new article'
       redirect_to(article_path(@article))
     else
-      @form_text = 'Create Article'
       render 'new'
     end
   end
 
   def edit
     @article = Article.find(params[:id])
-    @form_text = 'Save Article'
   end
 
   def update
@@ -35,7 +32,6 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Successfully Updated Article: #{@article.title}."
       redirect_to(article_path(@article))
     else
-      @form_text = 'Save Article'
       render 'edit'
     end
   end
