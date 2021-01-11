@@ -2,12 +2,12 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.sorted
+    @users = User.paginate(page: params[:page], per_page: 5).sorted
   end
 
   def show
     @user = User.find(params[:id])
-    @articles = @user.articles.sorted
+    @articles = @user.articles.paginate(page: params[:page], per_page: 5).sorted
   end
 
   def new
