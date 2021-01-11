@@ -30,7 +30,7 @@
 
         <div class="form-group row justify-content-center">
           <%= f.submit(@user.new_record? ? 'Sign up' : 'Update Account', class: 'btn btn-outline-light btn-lg ml-4') %>
-          <%= link_to('Home', root_path, class: 'btn btn-outline-danger btn-lg ml-4', data: { confirm: @user.new_record? ? 'Are you sure?' : 'All Unsaved data will be lost.' }) %>
+          <%= link_to(@user.new_record? ? 'Home' : 'Cancel', @user.new_record? ? root_path : @user, class: 'btn btn-outline-danger btn-lg ml-4', data: { confirm: @user.new_record? ? 'Are you sure?' : 'All Unsaved data will be lost.' }) %>
         </div>
       <% end %>
     </div>

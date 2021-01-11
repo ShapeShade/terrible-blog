@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "Welcome to Terrible Blog #{@user.username}, The signup was successful!"
-      redirect_to(articles_path)
+      redirect_to(@user)
     else
       render 'new'
     end
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:notice] = "#{@user.username} account information has successfully updated."
-      redirect_to(articles_path) # TODO: redirect to users show page.
+      redirect_to(@user)
     else
       render 'edit'
     end
