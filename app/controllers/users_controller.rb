@@ -1,5 +1,11 @@
 # Users Controller
 class UsersController < ApplicationController
+
+  def show
+    @user = User.find(params[:id])
+    @articles = @user.articles.sorted
+  end
+
   def new
     @user = User.new
   end
