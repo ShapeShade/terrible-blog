@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user = User.first # TODO: Remove when user functionality is finished.
+    @article.user = User.find(session[:user_id])
     if @article.save
       flash[:notice] = 'Successfully Created new article'
       redirect_to(article_path(@article))
