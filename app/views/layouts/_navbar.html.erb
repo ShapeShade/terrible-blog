@@ -19,6 +19,11 @@
           <%= link_to('Create New', new_article_path, class: 'dropdown-item') %>
         </div>
       </li>
+      <% unless session[:user_id].nil? %>
+        <li class="nav-item">
+          <%= link_to("#{session[:username]}", user_path(session[:user_id]), class: 'nav-link') %>
+        </li>
+      <% end %>
       <li class="nav-item">
         <% if session[:user_id].nil? %>
           <%= link_to('Login', login_path, class: 'nav-link btn btn-info') %>
@@ -26,6 +31,11 @@
           <%= link_to('Logout', logout_path, class: 'nav-link btn btn-danger', method: :delete) %>
         <% end %>
       </li>
+      <% if session[:user_id].nil? %>
+        <li class="nav-item">
+          <%= link_to('Sign up', signup_path, class: 'nav-link btn btn-success ml-4') %>
+        </li>
+      <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
+      session[:username] = @user.username
       flash[:notice] = "Welcome to Terrible Blog #{@user.username}, The signup was successful!"
       redirect_to(@user)
     else
