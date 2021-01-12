@@ -6,6 +6,7 @@
 <% if session[:user_id] && @user.id == session[:user_id]%>
   <div class="text-center mt-4">
     <%= link_to('Edit your profile', edit_user_path(@user), class: 'btn btn-info') %>
+    <%= link_to('Delete profile', user_path(@user), method: :delete, class: 'btn btn-danger', data: { confirm: "This cannot be undone so be real sure you want this all the #{pluralize(@user.articles.count, 'article')} will be deleted as well." }) %>
   </div>
 <% end %>
 
