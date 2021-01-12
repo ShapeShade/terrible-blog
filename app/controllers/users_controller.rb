@@ -3,7 +3,7 @@
 # Users Controller
 class UsersController < ApplicationController
   before_action :confirm_user_login, except: [:show, :index, :new, :create]
-  before_action :check_user_id, except: [:show, :index, :new, :create]
+  before_action :confirm_valid_user, except: [:show, :index, :new, :create]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5).sorted
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password)
   end
 
-  def check_user_id
+  def confirm_valid_user
     @user = User.find(params[:id])
     unless @user.id == session[:user_id]
       flash[:alert] = "You don't have permission to edit this user... And how did you get this message?"

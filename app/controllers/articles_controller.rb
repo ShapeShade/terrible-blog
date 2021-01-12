@@ -3,7 +3,7 @@
 # Articles Controller
 class ArticlesController < ApplicationController
   before_action :confirm_user_login, except: [:show, :index]
-  before_action :check_user_id, except: [:show, :index, :new, :create]
+  before_action :confirm_valid_user, except: [:show, :index, :new, :create]
 
   def show
     @article = Article.find(params[:id])
@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :description)
   end
 
-  def check_user_id
+  def confirm_valid_user
     @article = Article.find(params[:id])
     unless @article.user.id == session[:user_id]
       flash[:alert] = "You don't have permission to edit this article... Also how did you get this message?"
