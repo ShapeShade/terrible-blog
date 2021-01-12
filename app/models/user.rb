@@ -5,6 +5,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i.freeze
 
   before_save { self.email = email.downcase }
+  before_save { self.username = username.downcase }
 
   has_many :articles, dependent: :destroy
 

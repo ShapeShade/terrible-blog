@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def logout_user_session
+    session[:user_id] = nil
+    session[:username] = nil
+    session[:admin] = nil
+  end
+
 end

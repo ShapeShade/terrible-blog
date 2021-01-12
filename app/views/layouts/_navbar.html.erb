@@ -24,7 +24,7 @@
       <% unless session[:user_id].nil? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Logged in as <%= session[:username].capitalize %>
+            Logged in as <%= session[:username].capitalize %><%= '(AdminAccount)' if session[:admin] == true %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
             <%= link_to('View Profile', user_path(session[:user_id]), class: 'dropdown-item') %>

@@ -42,11 +42,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    session[:username] = nil
+    logout_user_session unless session[:admin] && !session[:user_id] == @user.id
     @user.destroy
     flash[:notice] = "Account and all associated articles have successfully been removed."
-    redirect_to(root_path)
+    if session[:admin]
+      redirect_to(users_path)
+    else
+      redirect_to(root_path)
+    end
   end
 
   private
@@ -57,8 +60,8 @@ class UsersController < ApplicationController
 
   def confirm_valid_user
     @user = User.find(params[:id])
-    unless @user.id == session[:user_id]
-      flash[:alert] = "You don't have permission to edit this user... And how did you get this message?"
+    unless @user.id == session[:user_id] || session[:admin]
+      flash[:alert] = "You don't have permission to edit/delete this user... And how did you get this message?"
       redirect_to(@user)
     end
   end

@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
           <div class="card-text text-left"><%= simple_format(@article.description) %></div>
-          <% if session[:user_id] && @article.user.id == session[:user_id] %>
+          <% if session[:user_id] && (@article.user.id == session[:user_id] || session[:admin]) %>
             <%= link_to('Edit', edit_article_path(@article), class: 'btn btn-outline-info') %>
             <%= link_to('Delete', article_path(@article), class: 'btn btn-outline-danger', method: :delete, data: { confirm: "Are you sure you want to delete #{@article.title}?" }) %>
           <% end %>

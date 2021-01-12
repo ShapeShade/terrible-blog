@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
 
   def confirm_valid_user
     @article = Article.find(params[:id])
-    unless @article.user.id == session[:user_id]
+    unless @article.user.id == session[:user_id] || session[:admin]
       flash[:alert] = "You don't have permission to edit this article... Also how did you get this message?"
       redirect_to(@article)
     end
