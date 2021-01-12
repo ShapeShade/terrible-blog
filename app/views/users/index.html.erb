@@ -17,7 +17,9 @@
             <h5 class="card-title"><%= link_to(gravatar_for(user, 128), user) %></h5>
             <p class="card-text"><%= pluralize(user.articles.count, 'article') %></p>
             <%= link_to('View profile', user, class: 'btn btn-outline-success') %>
-            <%= link_to('Edit profile', edit_user_path(user), class: 'btn btn-outline-info') %>
+            <% if session[:user_id] == user.id %>
+              <%= link_to('Edit profile', edit_user_path(user), class: 'btn btn-outline-info') %>
+            <% end %>
           </div>
           <div class="card-footer text-muted">
             <small>Joined <%= time_ago_in_words(user.created_at) %> ago, Last updated <%= time_ago_in_words(user.updated_at) %> ago</small>

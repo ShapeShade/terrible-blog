@@ -2,6 +2,9 @@
 
 # Articles Controller
 class ArticlesController < ApplicationController
+  before_action :confirm_user_login, except: [:show, :index]
+  before_action :check_user_id, except: [:show, :index, :new, :create]
+
   def show
     @article = Article.find(params[:id])
   end
@@ -26,11 +29,9 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update_attributes(article_params)
       flash[:notice] = "Successfully Updated Article: #{@article.title}."
       redirect_to(article_path(@article))
@@ -40,7 +41,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "Successfully Deleted Article: #{@article.title}."
     redirect_to(articles_path)
@@ -50,5 +50,13 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def check_user_id
+    @article = Article.find(params[:id])
+    unless @article.user.id == session[:user_id]
+      flash[:alert] = "You don't have permission to edit this article... Also how did you get this message?"
+      redirect_to(articles_path)
+    end
   end
 end
