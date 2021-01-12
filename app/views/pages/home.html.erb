@@ -1,9 +1,9 @@
 <div class="container" id="home-container">
   <div class="jumbotron text-center" id="home-jumbotron">
-    <h1 class="display-4">Terrible Blog.</h1>
-    <p class="lead">Sign up for the terrible blog today! or something i have no idea...</p>
+    <h1 class="display-4 text-white">Terrible Blog.</h1>
+    <p class="lead d-inline bg-dark text-white">Sign up for the terrible blog today! or something i have no idea...</p>
     <hr class="my-4">
-    <p>Temp extra text here why? cause reasons!</p>
+    <p class="">Temp extra text here why? cause reasons!</p>
     <% if session[:user_id].nil? %>
       <%= link_to('Sign up!', signup_path, class: 'btn btn-success btn-lg', role: 'button') %>
     <% else %>
