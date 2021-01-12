@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user.id == session[:user_id]
       flash[:alert] = "You don't have permission to edit this user... And how did you get this message?"
-      redirect_to(users_path)
+      redirect_to(@user)
     end
   end
 end

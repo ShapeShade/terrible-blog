@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     unless @article.user.id == session[:user_id]
       flash[:alert] = "You don't have permission to edit this article... Also how did you get this message?"
-      redirect_to(articles_path)
+      redirect_to(@article)
     end
   end
 end
