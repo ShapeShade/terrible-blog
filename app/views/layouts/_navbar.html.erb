@@ -15,13 +15,22 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to('View Articles', articles_path, class: 'dropdown-item') %>
-          <div class="dropdown-divider"></div>
-          <%= link_to('Create New', new_article_path, class: 'dropdown-item') %>
+          <% if session[:user_id] %>
+            <div class="dropdown-divider"></div>
+            <%= link_to('Create New Article', new_article_path, class: 'dropdown-item') %>
+          <% end %>
         </div>
       </li>
       <% unless session[:user_id].nil? %>
-        <li class="nav-item">
-          <%= link_to("#{session[:username]}", user_path(session[:user_id]), class: 'nav-link') %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Logged in as <%= session[:username].capitalize %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+            <%= link_to('View Profile', user_path(session[:user_id]), class: 'dropdown-item') %>
+            <div class="dropdown-divider"></div>
+            <%= link_to('Edit Profile', edit_user_path(session[:user_id]), class: 'dropdown-item') %>
+          </div>
         </li>
       <% end %>
       <li class="nav-item">
